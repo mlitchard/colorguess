@@ -1,6 +1,5 @@
 module ColorGuess (runGameM_) where
 
-
 import Control.Monad.State (StateT,runStateT)
 import System.Random (newStdGen)
 import Control.Monad.Prompt (Prompt,runPromptM,prompt)
