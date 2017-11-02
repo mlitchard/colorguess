@@ -19,11 +19,19 @@ game = (runPromptM gameInterp play)
 play :: Prompt GuessPrompt ()
 play = do
   action <- queryPrompt
+  doAction action
+{-  
   case action of
     (ColorIs color) -> guess color  
     Hint          -> hint
     NOOP          -> play
     End           -> end
+-}
+doAction :: Action -> Prompt GuessPrompt ()
+doAction (ColorIs color) = guess color
+doAction Hint            = hint
+doAction NOOP            = play
+doAction End             = end
 
 queryPrompt :: Prompt GuessPrompt Action
 queryPrompt = prompt (Say commands) >> prompt (Query guess')
